@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>51炒股 - 深度市场分析与智能交易辅助工具</title>
+    <meta name="description" content="51炒股提供专业的A股市场数据分析、实时行情监控、智能选股策略及投资教育内容，帮助投资者把握市场脉搏，优化交易决策。">
+    <meta name="keywords" content="51炒股, 股票分析, A股行情, 选股工具, 投资策略, 股票资讯">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #00a8e8;
+            --accent-color: #ff9800;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --bg-body: #f4f6f9;
+            --bg-card: #ffffff;
+            --border-radius: 8px;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* 头部导航 */
+        header {
+            background-color: var(--bg-card);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 86, 179, 0.05);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #004494;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(135deg, #0056b3 0%, #00a8e8 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item h3 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        /* 核心功能 */
+        .features {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-top: 4px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            border-top-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 12px;
+            background: rgba(0, 168, 232, 0.1);
+            color: var(--secondary-color);
+            border-radius: 50%;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* 市场行情展示 */
+        .market-section {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .market-table-container {
+            overflow-x: auto;
+        }
+
+        .market-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .market-table th {
+            text-align: left;
+            padding: 15px;
+            background-color: #f8f9fa;
+            color: var(--text-secondary);
+            font-weight: 600;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .market-table td {
+            padding: 15px;
+            border-bottom: 1px solid #f1f3f5;
+        }
+
+        .market-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .trend-up {
+            color: #e63946;
+            font-weight: 600;
+        }
+
+        .trend-down {
+            color: #2a9d8f;
+            font-weight: 600;
+        }
+
+        .market-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .tag-up {
+            background: rgba(230, 57, 70, 0.1);
+            color: #e63946;
+        }
+
+        .tag-down {
+            background: rgba(42, 157, 143, 0.1);
+            color: #2a9d8f;
+        }
+
+        /* 策略指南 */
+        .guide-section {
+            padding: 60px 0;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .guide-content h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .guide-content p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .guide-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .guide-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .guide-image {
+            background-color: #e9ecef;
+            border-radius: var(--border-radius);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #adb5bd;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guide-image::after {
+            content: "市场趋势分析示意图";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #fff;
+            background: rgba(0,0,0,0.5);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        /* 常见问题 */
+        .faq-section {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e9ecef;
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            display: none;
+            padding-left: 10px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: "-";
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2c3e50;
+            color: #bdc3c7;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .market-table th, .market-table td {
+                padding: 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--primary-color);">
+                    <path d="M3 3v18h18"/>
+                    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                </svg>
+                <span>51炒股</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">行情中心</a></li>
+                    <li><a href="#">选股工具</a></li>
+                    <li><a href="#">策略学院</a></li>
+                    <li><a href="#">数据下载</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-outline">登录</button>
+                <button class="btn btn-primary">免费注册</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>51炒股 - 您的智能投资决策伙伴</h1>
+                <p>基于大数据的A股市场分析平台，提供实时行情、智能选股模型、技术指标回测及专业的投资策略教育，助您在市场中从容应对。</p>
+                <div style="margin-bottom: 20px;">
+                    <button class="btn" style="background: white; color: var(--primary-color);">立即查看行情</button>
+                    <button class="btn" style="background: transparent; border: 1px solid white; color: white; margin-left: 10px;">了解策略</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>1000+</h3>
+                        <p>覆盖股票代码</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>技术指标模型</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>10万+</h3>
+                        <p>注册用户信赖</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心功能 -->
+        <section class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>核心功能服务</h2>
+                    <p>全方位覆盖股票交易前、中、后各环节需求</p>
+                </div>
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>实时行情监控</h3>
+                        <p>提供A股、港股、美股实时报价，支持分时图、K线图深度解析，多周期数据无缝切换。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>智能选股引擎</h3>
+                        <p>输入您的筛选条件（如市盈率、ROE、成交量），AI算法瞬间生成符合您投资逻辑的股票池。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>策略回测验证</h3>
+                        <p>将您的交易策略输入系统，通过历史数据回测，评估策略在过往市场中的胜率和收益率。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">📰</div>
+                        <h3>深度财经资讯</h3>
+                        <p>整合券商研报、公告解读、龙虎榜数据，第一时间推送影响股价的关键信息。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h3>新手投资学院</h3>
+                        <p>从K线基础到进阶战法，提供系统的视频课程和图文教程，帮助新手快速入门。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h3>风险控制提示</h3>
+                        <p>内置仓位管理建议和止损止盈提醒，帮助投资者建立科学的交易纪律。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 市场行情 -->
+        <section class="market-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>热门板块实时监测</h2>
+                    <p>当前市场资金流向与热门个股表现</p>
+                </div>
+                <div class="market-table-container">
+                    <table class="market-table">
+                        <thead>
+                            <tr>
+                                <th>代码</th>
+                                <th>名称</th>
+                                <th>最新价</th>
+                                <th>涨跌幅</th>
+                                <th>成交量(万手)</th>
+                                <th>成交额(亿)</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>600519</td>
+                                <td>贵州茅台</td>
+                                <td>1,650.00</td>
+                                <td class="trend-down">-0.45%</td>
+                                <td>12.5</td>
+                                <td>207.8</td>
+                                <td><span class="market-tag tag-down">下跌</span></td>
+                            </tr>
+                            <tr>
+                                <td>300750</td>
+                                <td>宁德时代</td>
+                                <td>215.60</td>
+                                <td class="trend-up">+2.12%</td>
+                                <td>28.3</td>
+                                <td>610.2</td>
+                                <td><span class="market-tag tag-up">上涨</span></td>
+                            </tr>
+                            <tr>
+                                <td>000858</td>
+                                <td>五粮液</td>
+                                <td>158.90</td>
+                                <td class="trend-up">+1.05%</td>
+                                <td>8.9</td>
+                                <td>141.5</td>
+                                <td><span class="market-tag tag-up">上涨</span></td>
+                            </tr>
+                            <tr>
+                                <td>002594</td>
+                                <td>比亚迪</td>
+                                <td>245.30</td>
+                                <td class="trend-down">-1.20%</td>
+                                <td>15.2</td>
+                                <td>373.6</td>
+                                <td><span class="market-tag tag-down">下跌</span></td>
+                            </tr>
+                            <tr>
+                                <td>601318</td>
+                                <td>中国平安</td>
+                                <td>48.20</td>
+                                <td class="trend-down">-0.15%</td>
+                                <td>22.1</td>
+                                <td>106.4</td>
+                                <td><span class="market-tag tag-down">下跌</span></td>
+                            </tr>
+                            <tr>
+                                <td>688981</td>
+                                <td>中芯国际</td>
+                                <td>52.40</td>
+                                <td class="trend-up">+3.45%</td>
+                                <td>5.6</td>
+                                <td>29.3</td>
+                                <td><span class="market-tag tag-up">上涨</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 投资策略指南 -->
+        <section class="guide-section">
+            <div class="container">
+                <div class="guide-grid">
+                    <div class="guide-content">
+                        <h2>科学选股：从基本面到技术面</h2>
+                        <p>在51炒股，我们不仅提供数据，更提供方法。许多投资者面临的最大困难是如何从海量股票中筛选出具有投资价值的标的。</p>
+                        <ul class="guide-list">
+                            <li><strong>基本面筛选：</strong> 关注公司的毛利率、资产负债率和现金流状况，寻找业绩稳健的蓝筹股。</li>
+                            <li><strong>技术面分析：</strong> 利用MACD、KDJ等指标寻找趋势拐点，结合量价关系判断主力资金动向。</li>
+                            <li><strong>板块轮动：</strong> 紧跟国家政策导向，捕捉新能源、半导体、消费等热门赛道的投资机会。</li>
+                            <li><strong>风险隔离：</strong> 设置合理的止损位，避免因单只股票的剧烈波动导致账户大幅回撤。</li>
+                        </ul>
+                        <br>
+                        <a href="#" style="color: var(--primary-color); font-weight: 600;">阅读完整选股策略指南 &rarr;</a>
+                    </div>
+                    <div class="guide-image">
+                        <!-- 占位图 -->
+                        <div style="position:absolute; width:100%; height:100%; background: linear-gradient(to right, rgba(0,86,179,0.1), rgba(0,168,232,0.1)); z-index: 1;"></div>
+                        <div style="position: relative; z-index: 2; text-align: center;">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:10px; color:var(--primary-color);">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                            <p>投资策略可视化演示</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见问题 FAQ -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>常见问题解答</h2>
+                    <p>关于51炒股平台使用与服务的疑问</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item active">
+                        <div class="faq-question">51炒股的数据更新频率是怎样的？</div>
+                        <div class="faq-answer">
+                            我们的行情数据与交易所同步，分时数据每3秒刷新一次，K线数据在交易日盘后更新，确保信息的时效性和准确性。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">智能选股功能需要付费吗？</div>
+                        <div class="faq-answer">
+                            基础的筛选功能免费开放，用户可以自定义多个条件进行初步筛选。更高级的深度回测报告和VIP数据服务需要订阅会员。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">如何保证交易安全？</div>
+                        <div class="faq-answer">
+                            51炒股仅提供数据分析与辅助决策，不直接对接券商交易接口。用户需通过正规渠道进行资金操作，我们建议使用第三方交易软件或券商APP完成实际下单。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于51炒股</h4>
+                    <p style="font-size: 14px; line-height: 1.8;">
+                        51炒股致力于为个人投资者提供专业的金融数据服务与分析工具，帮助用户提升投资认知，规避市场风险。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品服务</h4>
+                    <ul>
+                        <li><a href="#">实时行情</a></li>
+                        <li><a href="#">智能选股</a></li>
+                        <li><a href="#">数据下载</a></li>
+                        <li><a href="#">API接口</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">联系客服</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li>客服电话：400-123-4567</li>
+                        <li>工作时间：周一至周五 9:00-18:00</li>
+                        <li>电子邮箱：support@51gupiao.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 51炒股 版权所有 | 市场有风险，投资需谨慎</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                // Close others
+                document.querySelectorAll('.faq-item').forEach(child => {
+                    if (child !== parent) child.classList.remove('active');
+                });
+                // Toggle current
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Simple Navigation Active State Logic
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+                  </html>
