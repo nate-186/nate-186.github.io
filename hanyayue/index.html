@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>韩雅乐-韩式雅致生活美学与家居灵感指南</title>
+    <meta name="description" content="韩雅乐为您提供专业的韩式家居装修灵感、软装搭配指南及生活方式分享。探索简约、温馨、实用的韩式美学，打造理想中的现代居所。">
+    <meta name="keywords" content="韩雅乐,韩式装修,家居软装,装修灵感,韩式风格,现代简约">
+    <style>
+        :root {
+            --primary-color: #8E7355;
+            --primary-dark: #6B5344;
+            --accent-color: #D4AF37;
+            --bg-color: #F9F8F6;
+            --card-bg: #FFFFFF;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --border-color: #E5E5E5;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            margin-left: 8px;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            border-left: 1px solid var(--border-color);
+            padding-left: 8px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://picsum.photos/seed/hanya/1920/1080');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background-color: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 10px auto 0;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            border-color: var(--border-color);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Design Styles Showcase */
+        .style-showcase {
+            background-color: #fff;
+        }
+
+        .style-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            background: #fff;
+            cursor: pointer;
+            font-size: 15px;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .style-item {
+            position: relative;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .style-item img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .style-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: #fff;
+        }
+
+        .style-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Guide List */
+        .guide-list {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .guide-article {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .article-img {
+            height: 200px;
+            width: 100%;
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .article-title {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .article-excerpt {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .article-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .article-link::after {
+            content: '→';
+            margin-left: 5px;
+            transition: margin-left 0.2s;
+        }
+
+        .article-link:hover::after {
+            margin-left: 10px;
+        }
+
+        .sidebar-widget {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .widget-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .check-list li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .check-list li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2C2C2C;
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: #fff;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin: 15px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .style-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .guide-list {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">韩雅乐 <span>优雅生活空间</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">风格鉴赏</a></li>
+                    <li><a href="#">装修指南</a></li>
+                    <li><a href="#">软装搭配</a></li>
+                    <li><a href="#">品牌推荐</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline">登录</a>
+                <a href="#" class="btn btn-primary">订阅灵感</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-tags">
+                    <span class="tag">2024流行趋势</span>
+                    <span class="tag">极简主义</span>
+                    <span class="tag">温馨居家</span>
+                </div>
+                <h1>探索韩式雅致生活美学，打造理想居所</h1>
+                <p>韩雅乐致力于分享最前沿的韩式家居装修灵感，从色彩搭配到空间布局，助您轻松营造温馨、简约而不失格调的现代生活空间。</p>
+                <a href="#guide" class="btn btn-primary" style="padding: 12px 30px; font-size: 16px;">开始规划您的家</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>色彩搭配</h3>
+                    <p>解析莫兰迪色系与暖色调在韩式装修中的应用，营造柔和治愈的视觉氛围。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🪵</div>
+                    <h3>材质选择</h3>
+                    <p>精选原木、棉麻等天然材质，体现韩式风格的自然、环保与温润质感。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📐</div>
+                    <h3>空间布局</h3>
+                    <p>小户型如何实现韩式“一室一厅”的通透感，最大化利用每一寸空间。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌿</div>
+                    <h3>绿植点缀</h3>
+                    <p>利用绿植与鲜花点缀空间，为家增添生机与自然气息。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Style Showcase -->
+        <section class="style-showcase">
+            <div class="container">
+                <div class="section-header">
+                    <h2>韩式风格鉴赏</h2>
+                    <p>多角度解析韩式家居美学，寻找属于您的风格</p>
+                </div>
+                
+                <div class="style-tabs">
+                    <button class="tab-btn active">经典韩式</button>
+                    <button class="tab-btn">现代简约</button>
+                    <button class="tab-btn">田园清新</button>
+                    <button class="tab-btn">北欧混搭</button>
+                </div>
+
+                <div class="style-grid">
+                    <article class="style-item">
+                        <img src="https://picsum.photos/seed/korean1/600/800" alt="经典韩式客厅">
+                        <div class="style-overlay">
+                            <h3>经典韩式客厅</h3>
+                            <p>温馨与优雅的完美结合</p>
+                        </div>
+                    </article>
+                    <article class="style-item">
+                        <img src="https://picsum.photos/seed/korean2/600/800" alt="现代简约厨房">
+                        <div class="style-overlay">
+                            <h3>现代简约厨房</h3>
+                            <p>明亮通透的烹饪空间</p>
+                        </div>
+                    </article>
+                    <article class="style-item">
+                        <img src="https://picsum.photos/seed/korean3/600/800" alt="田园清新卧室">
+                        <div class="style-overlay">
+                            <h3>田园清新卧室</h3>
+                            <p>回归自然的宁静睡眠</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Guide -->
+        <section class="container" id="guide">
+            <div class="section-header">
+                <h2>装修指南与灵感</h2>
+                <p>从设计到落地，为您提供全方位的实用建议</p>
+            </div>
+
+            <div class="guide-list">
+                <div class="main-content">
+                    <article class="guide-article">
+                        <img src="https://picsum.photos/seed/interior1/800/400" alt="韩式装修技巧" class="article-img">
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span>装修干货</span>
+                                <span>2023-10-24</span>
+                            </div>
+                            <h3 class="article-title">韩式装修的三大核心要素：光影、线条与收纳</h3>
+                            <p class="article-excerpt">韩式风格之所以迷人，在于其对细节的极致追求。通过利用自然光线的引入、柔和的线条勾勒以及强大的收纳系统，即使是小户型也能展现出大宅的质感。</p>
+                            <a href="#" class="article-link">阅读全文</a>
+                        </div>
+                    </article>
+
+                    <article class="guide-article">
+                        <img src="https://picsum.photos/seed/interior2/800/400" alt="软装搭配技巧" class="article-img">
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span>软装搭配</span>
+                                <span>2023-10-20</span>
+                            </div>
+                            <h3 class="article-title">软装搭配指南：如何用窗帘和地毯提升空间格调</h3>
+                            <p class="article-excerpt">软装是韩式风格的灵魂。选择垂坠感好的棉麻窗帘，搭配大地色系的地毯，可以有效柔化空间棱角，营造出如同韩剧场景般的温馨氛围。</p>
+                            <a href="#" class="article-link">阅读全文</a>
+                        </div>
+                    </article>
+
+                    <article class="guide-article">
+                        <img src="https://picsum.photos/seed/interior3/800/400" alt="小户型改造" class="article-img">
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span>空间改造</span>
+                                <span>2023-10-15</span>
+                            </div>
+                            <h3 class="article-title">小户型韩式改造：打造“显大”又温馨的居住体验</h3>
+                            <p class="article-excerpt">对于面积有限的居住空间，采用浅色系墙面、多功能家具以及通透的隔断设计，是实现空间扩容的关键技巧。</p>
+                            <a href="#" class="article-link">阅读全文</a>
+                        </div>
+                    </article>
+                </div>
+
+                <aside class="sidebar">
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">避坑指南</h4>
+                        <ul class="check-list">
+                            <li>避免过度使用亮色，保持整体色调和谐</li>
+                            <li>不要盲目跟风网红家具，注重实用性</li>
+                            <li>灯光设计要层次分明，避免单调白光</li>
+                            <li>收纳空间要提前规划，不要留死角</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">热门标签</h4>
+                        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                            <span style="background:#eee; padding:4px 8px; border-radius:4px; font-size:12px;">奶油风</span>
+                            <span style="background:#eee; padding:4px 8px; border-radius:4px; font-size:12px;">原木风</span>
+                            <span style="background:#eee; padding:4px 8px; border-radius:4px; font-size:12px;">日式混搭</span>
+                            <span style="background:#eee; padding:4px 8px; border-radius:4px; font-size:12px;">客厅设计</span>
+                            <span style="background:#eee; padding:4px 8px; border-radius:4px; font-size:12px;">卧室配色</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>获取专属家居设计方案</h2>
+                <p>加入韩雅乐会员，获取免费在线户型分析及定制化配色方案。</p>
+                <a href="#" class="btn" style="background:#fff; color:var(--primary-color);">立即咨询设计师</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>韩雅乐</h3>
+                    <p style="font-size:14px; line-height:1.8; color:#999;">
+                        专注于分享韩式家居美学与生活方式。我们相信，家是心灵栖息的港湾，每一个细节都值得用心对待。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">品牌故事</a></li>
+                        <li><a href="#">设计团队</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">联系方式</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>栏目导航</h4>
+                    <ul>
+                        <li><a href="#">装修攻略</a></li>
+                        <li><a href="#">案例展示</a></li>
+                        <li><a href="#">品牌推荐</a></li>
+                        <li><a href="#">家居论坛</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">小红书</a></li>
+                        <li><a href="#">抖音号</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 韩雅乐家居美学. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</body>
+</html>
