@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="动漫明星激斗传 - 汇聚热血动漫角色，打造沉浸式对战体验。探索经典动漫角色数据、技能图鉴、热血同人图及激斗资讯。">
+    <meta name="keywords" content="动漫明星激斗传, 漫画, 动漫, 角色图鉴, 同人, 激斗">
+    <title>动漫明星激斗传 - 热血角色图鉴与激斗资讯</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff4757;
+            --secondary-color: #2f3542;
+            --accent-color: #ffa502;
+            --bg-color: #f1f2f6;
+            --card-bg: #ffffff;
+            --text-main: #2f3542;
+            --text-light: #747d8c;
+            --spacing-unit: 1rem;
+            --border-radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* 头部导航 */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 600;
+            color: var(--secondary-color);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, #2f3542 0%, #1e272e 100%);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://picsum.photos/seed/animehero/1600/900');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            mix-blend-mode: overlay;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6);
+            background-color: #ff6b81;
+        }
+
+        /* 分类导航 */
+        .category-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: none;
+        }
+
+        .category-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-item {
+            padding: 8px 20px;
+            background-color: white;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-light);
+            white-space: nowrap;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .cat-item:hover, .cat-item.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* 内容区块 */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 24px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .view-all {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* 角色卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .char-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .char-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-img {
+            height: 350px;
+            width: 100%;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .card-badge {
+            background-color: rgba(255, 71, 87, 0.1);
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-stats {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 12px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+        }
+
+        /* 激斗排行榜 */
+        .ranking-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+        }
+
+        .ranking-list {
+            counter-reset: rank;
+        }
+
+        .rank-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f2f6;
+            position: relative;
+        }
+
+        .rank-item:last-child {
+            border-bottom: none;
+        }
+
+        .rank-item::before {
+            counter-increment: rank;
+            content: counter(rank);
+            width: 30px;
+            height: 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .rank-item:nth-child(1)::before { background-color: #ff4757; }
+        .rank-item:nth-child(2)::before { background-color: #ffa502; }
+        .rank-item:nth-child(3)::before { background-color: #2ed573; }
+
+        .rank-info {
+            flex: 1;
+        }
+
+        .rank-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        .rank-origin {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .rank-power {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* 特色功能区 */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-text {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--secondary-color);
+            color: #ccc;
+            padding: 60px 0 20px;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-wrapper {
+                padding: 0 10px;
+            }
+
+            nav ul {
+                display: none; /* 移动端简化处理 */
+            }
+
+            .ranking-section {
+                padding: 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <span>⚡</span> 动漫明星激斗传
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">角色图鉴</a></li>
+                    <li><a href="#">激斗排行</a></li>
+                    <li><a href="#">同人创作</a></li>
+                    <li><a href="#">资讯社区</a></li>
+                </ul>
+            </nav>
+            <button class="search-btn" aria-label="搜索">
+                🔍
+            </button>
+        </div>
+    </header>
+
+    <!-- 首屏 Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <h1>汇聚<span>热血动漫</span>，开启<span>跨次元激斗</span></h1>
+            <p>在这里，你可以探索来自不同世界观的经典角色，查看详细数据，参与同人创作，体验前所未有的角色对战模拟。</p>
+            <a href="#characters" class="cta-btn">开始探索角色</a>
+        </div>
+    </section>
+
+    <main class="container">
+        
+        <!-- 分类筛选 -->
+        <div class="category-nav">
+            <div class="cat-item active">全部角色</div>
+            <div class="cat-item">热血少年</div>
+            <div class="cat-item">机甲战斗</div>
+            <div class="cat-item">魔法奇幻</div>
+            <div class="cat-item">格斗竞技</div>
+            <div class="cat-item">科幻未来</div>
+        </div>
+
+        <!-- 热门推荐 -->
+        <section id="characters">
+            <div class="section-header">
+                <h2 class="section-title">热门角色推荐</h2>
+                <a href="#" class="view-all">查看全部 &rarr;</a>
+            </div>
+
+            <div class="card-grid">
+                <!-- 角色卡片 1 -->
+                <article class="char-card">
+                    <img src="https://picsum.photos/seed/naruto/400/500" alt="漩涡鸣人" class="card-img">
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-badge">热血</span>
+                            <span>火影忍者</span>
+                        </div>
+                        <h3 class="card-title">漩涡鸣人</h3>
+                        <p class="card-desc">木叶忍者村的七代目火影，拥有九尾妖狐查克拉的体术天才，性格开朗，永不放弃。</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">95</span>
+                                <span class="stat-label">力量</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">88</span>
+                                <span class="stat-label">速度</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">92</span>
+                                <span class="stat-label">查克拉</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 角色卡片 2 -->
+                <article class="char-card">
+                    <img src="https://picsum.photos/seed/luffy/400/500" alt="蒙奇·D·路飞" class="card-img">
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-badge">冒险</span>
+                            <span>海贼王</span>
+                        </div>
+                        <h3 class="card-title">蒙奇·D·路飞</h3>
+                        <p class="card-desc">草帽海贼团船长，橡胶果实能力者，梦想是成为海贼王，拥有极其强大的韧性。</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">98</span>
+                                <span class="stat-label">力量</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">96</span>
+                                <span class="stat-label">速度</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">85</span>
+                                <span class="stat-label">霸气</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 角色卡片 3 -->
+                <article class="char-card">
+                    <img src="https://picsum.photos/seed/goku/400/500" alt="孙悟空" class="card-img">
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-badge">战斗</span>
+                            <span>龙珠</span>
+                        </div>
+                        <h3 class="card-title">孙悟空</h3>
+                        <p class="card-desc">赛亚人战士，地球的守护者，为了追求更强的力量不断修行，拥有压倒性的战斗力。</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">99</span>
+                                <span class="stat-label">力量</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">99</span>
+                                <span class="stat-label">速度</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">90</span>
+                                <span class="stat-label">气</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 角色卡片 4 -->
+                <article class="char-card">
+                    <img src="https://picsum.photos/seed/saitama/400/500" alt="埼玉" class="card-img">
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-badge">搞笑</span>
+                            <span>一拳超人</span>
+                        </div>
+                        <h3 class="card-title">埼玉</h3>
+                        <p class="card-desc">拥有无敌实力的英雄，为了寻找乐趣而战斗，一拳就能击败任何强敌。</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">100</span>
+                                <span class="stat-label">力量</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">100</span>
+                                <span class="stat-label">速度</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">50</span>
+                                <span class="stat-label">招式</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 激斗数据榜 -->
+        <section class="ranking-section">
+            <div class="section-header">
+                <h2 class="section-title">角色战力激斗榜</h2>
+                <a href="#" class="view-all">完整榜单 &rarr;</a>
+            </div>
+            <ul class="ranking-list">
+                <li class="rank-item">
+                    <div class="rank-info">
+                        <div class="rank-name">孙悟空</div>
+                        <div class="rank-origin">龙珠Z</div>
+                    </div>
+                    <div class="rank-power">∞</div>
+                </li>
+                <li class="rank-item">
+                    <div class="rank-info">
+                        <div class="rank-name">埼玉</div>
+                        <div class="rank-origin">一拳超人</div>
+                    </div>
+                    <div class="rank-power">100</div>
+                </li>
+                <li class="rank-item">
+                    <div class="rank-info">
+                        <div class="rank-name">路飞</div>
+                        <div class="rank-origin">海贼王</div>
+                    </div>
+                    <div class="rank-power">9800亿</div>
+                </li>
+                <li class="rank-item">
+                    <div class="rank-info">
+                        <div class="rank-name">鸣人</div>
+                        <div class="rank-origin">火影忍者</div>
+                    </div>
+                    <div class="rank-power">5000万</div>
+                </li>
+                <li class="rank-item">
+                    <div class="rank-info">
+                        <div class="rank-name">阿斯莫德</div>
+                        <div class="rank-origin">咒术回战</div>
+                    </div>
+                    <div class="rank-power">特级</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 平台特色 -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">⚔️</div>
+                <h3 class="feature-title">角色对战模拟</h3>
+                <p class="feature-text">基于角色属性、技能机制与背景设定的深度对战分析，还原真实战斗逻辑。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 class="feature-title">同人创作工坊</h3>
+                <p class="feature-text">汇聚全球创作者的同人画作与小说，分享你的创作，发现更多精彩脑洞。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">全数据图鉴</h3>
+                <p class="feature-text">收录超过千名动漫角色，包含详细背景故事、能力值及战斗录像回放。</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.8;">动漫明星激斗传是一个致力于动漫文化传播与角色数据整理的综合性平台。我们致力于为粉丝提供最准确、最丰富的角色资料。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">角色搜索</a></li>
+                        <li><a href="#">最新资讯</a></li>
+                        <li><a href="#">投稿指南</a></li>
+                        <li><a href="#">版权声明</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>热门分类</h4>
+                    <ul>
+                        <li><a href="#">热血战斗</a></li>
+                        <li><a href="#">恋爱喜剧</a></li>
+                        <li><a href="#">悬疑推理</a></li>
+                        <li><a href="#">机甲科幻</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li>邮箱：contact@anime-legend.com</li>
+                        <li>地址：二次元创作中心</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 动漫明星激斗传. All Rights Reserved. 仅供展示，非官方页面。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+  </html>
