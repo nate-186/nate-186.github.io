@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="加快网 - 专注提升效率与性能的实用指南。提供系统加速、软件优化、工作流程提速及生活管理技巧，助您高效达成目标。">
+    <meta name="keywords" content="加快, 提速, 效率提升, 性能优化, 工作加速, 生活提速">
+    <title>加快-效率提升与性能优化实用指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #10b981;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --container-width: 1200px;
+            --header-height: 70px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部导航 */
+        header {
+            height: var(--header-height);
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .header-actions .btn {
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            background: transparent;
+            margin-right: 10px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .highlight {
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background-color: rgba(37, 99, 235, 0.15);
+            z-index: -1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            color: var(--text-main);
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* 核心内容区 */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 24px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .section-link {
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .section-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 网格布局 */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
+        }
+
+        .card-img {
+            height: 200px;
+            background-color: #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.05);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+        }
+
+        .card-content {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 16px;
+        }
+
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 列表样式 */
+        .list-card {
+            display: flex;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            transition: box-shadow 0.2s;
+        }
+
+        .list-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .list-icon {
+            width: 50px;
+            height: 50px;
+            background: #eff6ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            color: var(--primary-color);
+        }
+
+        .list-content {
+            flex: 1;
+        }
+
+        .list-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .list-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* 侧边栏 */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-widget {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .ranking-list li {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+
+        .ranking-list .rank-num {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #cbd5e1;
+            font-style: italic;
+            width: 20px;
+        }
+
+        .ranking-list li:nth-child(1) .rank-num { color: #f59e0b; }
+        .ranking-list li:nth-child(2) .rank-num { color: #94a3b8; }
+        .ranking-list li:nth-child(3) .rank-num { color: #b45309; }
+
+        .ranking-list a {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .ranking-list a:hover {
+            color: var(--primary-color);
+        }
+
+        /* 常见问题 */
+        .faq-section {
+            background-color: #fff;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .faq-item {
+            margin-bottom: 24px;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            padding-left: 8px;
+            border-left: 3px solid #e2e8f0;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #1e293b;
+            color: #94a3b8;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h2 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 992px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none; /* 移动端简化：隐藏导航链接 */
+            }
+            .header-actions {
+                display: none; /* 移动端简化：隐藏按钮 */
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .grid-3, .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .list-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .list-icon {
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="currentColor"/>
+                </svg>
+                <span>加快</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">系统加速</a></li>
+                    <li><a href="#">办公提效</a></li>
+                    <li><a href="#">生活管理</a></li>
+                    <li><a href="#">工具箱</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline">登录</a>
+                <a href="#" class="btn btn-primary">免费加速</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首屏 Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>让一切<span class="highlight">加快</span>两倍</h1>
+            <p>无论是电脑卡顿、工作繁琐，还是生活节奏混乱，我们提供经过验证的方法与工具，帮助您突破瓶颈，极速达成目标。</p>
+            <div style="display: flex; justify-content: center; gap: 15px;">
+                <a href="#tools" class="btn btn-primary" style="padding: 12px 30px; font-size: 1.1rem;">开始提速</a>
+                <a href="#guide" class="btn btn-outline" style="padding: 12px 30px; font-size: 1.1rem;">阅读指南</a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>实用技巧</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1000+</h3>
+                    <p>用户提速</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>好评率</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心加速指南 -->
+    <section class="section" id="guide">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">全方位加速方案</h2>
+                <a href="#" class="section-link">查看全部指南 &rarr;</a>
+            </div>
+            <div class="grid-3">
+                <!-- 文章卡片 1 -->
+                <article class="card">
+                    <div class="card-img">
+                        <span class="card-tag">硬件</span>
+                        <img src="https://picsum.photos/seed/tech1/400/250" alt="电脑硬件升级">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">老旧电脑如何“加快”运行速度？</h3>
+                        <p class="card-desc">无需更换整机，通过清理后台进程、升级SSD硬盘和增加内存，让十年前的电脑焕发新生。</p>
+                        <div class="card-meta">
+                            <span>阅读 3.2k</span>
+                            <span>5分钟</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 文章卡片 2 -->
+                <article class="card">
+                    <div class="card-img">
+                        <span class="card-tag">软件</span>
+                        <img src="https://picsum.photos/seed/tech2/400/250" alt="软件优化">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">告别卡顿：浏览器加速配置指南</h3>
+                        <p class="card-desc">针对Chrome、Edge等主流浏览器的设置优化，减少内存占用，大幅提升网页加载速度。</p>
+                        <div class="card-meta">
+                            <span>阅读 2.8k</span>
+                            <span>8分钟</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 文章卡片 3 -->
+                <article class="card">
+                    <div class="card-img">
+                        <span class="card-tag">工作</span>
+                        <img src="https://picsum.photos/seed/tech3/400/250" alt="工作流加速">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">自动化工作流：让你的效率翻倍</h3>
+                        <p class="card-desc">利用Zapier和自动化工具，将重复性劳动交给机器，把精力集中在高价值工作上。</p>
+                        <div class="card-meta">
+                            <span>阅读 1.5k</span>
+                            <span>12分钟</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 热门工具与列表 -->
+    <section class="section" style="background-color: #f1f5f9;" id="tools">
+        <div class="container">
+            <div class="grid-2">
+                <!-- 左侧：工具列表 -->
+                <div>
+                    <div class="section-header" style="margin-bottom: 24px;">
+                        <h2 class="section-title">热门加速工具</h2>
+                    </div>
+                    
+                    <div class="list-card">
+                        <div class="list-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <div class="list-content">
+                            <h3 class="list-title">系统清理大师</h3>
+                            <p class="list-desc">一键扫描并清理系统垃圾、注册表冗余，释放磁盘空间，让系统运行如飞。</p>
+                        </div>
+                    </div>
+
+                    <div class="list-card">
+                        <div class="list-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z"></path>
+                            </svg>
+                        </div>
+                        <div class="list-content">
+                            <h3 class="list-title">极速下载器 Pro</h3>
+                            <p class="list-desc">多线程技术加速文件下载，支持断点续传和秒传，大幅缩短等待时间。</p>
+                        </div>
+                    </div>
+
+                    <div class="list-card">
+                        <div class="list-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="list-content">
+                            <h3 class="list-title">专注时钟</h3>
+                            <p class="list-desc">番茄工作法计时器，帮助您在高效的时间块内完成任务，减少拖延。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：侧边栏 -->
+                <aside>
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">加速榜单</h4>
+                        <ul class="ranking-list">
+                            <li>
+                                <span class="rank-num">1</span>
+                                <a href="#">如何加快 Windows 11 启动速度</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">2</span>
+                                <a href="#">Chrome 插件推荐：网页加载加速</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">3</span>
+                                <a href="#">英语听力磨耳朵：快速提升技巧</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">4</span>
+                                <a href="#">短视频剪辑：快节奏剪辑思路</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">5</span>
+                                <a href="#">早起打卡：快速进入高效状态</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: white; border: none;">
+                        <h4 class="widget-title" style="color: white; border-bottom-color: rgba(255,255,255,0.2);">加入加速计划</h4>
+                        <p style="margin-bottom: 20px; font-size: 0.9rem; opacity: 0.9;">每周获取3个实用的提速技巧，拒绝低效。</p>
+                        <input type="email" placeholder="输入您的邮箱" style="width: 100%; padding: 10px; border-radius: 6px; border: none; margin-bottom: 10px;">
+                        <button style="width: 100%; padding: 10px; background-color: #fbbf24; color: #1e293b; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">立即订阅</button>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 FAQ -->
+    <section class="section faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">常见加速问题</h2>
+            </div>
+            <div class="faq-grid">
+                <div>
+                    <div class="faq-item">
+                        <div class="faq-question">Q: 为什么我的电脑越用越慢？</div>
+                        <div class="faq-answer">A: 通常是由于系统垃圾堆积、启动项过多、硬盘空间不足或驱动程序过时。建议定期清理和检查硬件状态。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Q: 有没有免费的加速软件？</div>
+                        <div class="faq-answer">A: 有。例如系统自带的磁盘清理工具、任务管理器中的启动项管理，以及一些开源的优化脚本，都能在不花钱的情况下显著提升性能。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Q: 加速会影响电脑寿命吗？</div>
+                        <div class="faq-answer">A: 适度的加速和优化（如清理灰尘、更换SSD）反而能延长寿命。但使用不正规的“加速器”软件可能会带来安全风险。</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="faq-item">
+                        <div class="faq-question">Q: 如何加快阅读速度？</div>
+                        <div class="faq-answer">A: 练习“跳读”和“略读”，学会抓取关键词和句群，而不是逐字阅读。同时，减少回读的习惯。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Q: 生活中有哪些微小的“加快”技巧？</div>
+                        <div class="faq-answer">A: 例如：将常用物品放在固定位置减少寻找时间、使用语音输入代替打字、提前一天列出第二天的待办清单等。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Q: 网络加速器真的有用吗？</div>
+                        <div class="faq-answer">A: 在网络拥堵或跨运营商环境下，加速器通过优化路由路径可能提升速度；但在网络本身已满载的情况下，效果有限。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>加快</h2>
+                    <p style="line-height: 1.8;">致力于为用户提供最实用的效率提升方案。从硬件维护到工作流优化，我们相信每个人都能通过简单的改变，实现生活与工作的极速前进。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <ul>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">系统加速</a></li>
+                        <li><a href="#">办公技巧</a></li>
+                        <li><a href="#">工具下载</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">使用指南</a></li>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">联系客服</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">知乎专栏</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 加快网 版权所有. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+  </html>
