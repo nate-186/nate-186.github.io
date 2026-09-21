@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="烈女-中国历代烈女事迹数据库与人文资料整理平台。收录明清烈女传记、贞节牌坊历史、烈女文化研究及相关文学作品赏析。">
+    <meta name="keywords" content="烈女, 烈女传, 贞节牌坊, 历史人物, 女性传记, 中国古代史">
+    <title>烈女-中国历代烈女事迹与人文资料数据库</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #8B4513; /* 鞍褐色，体现历史厚重感 */
+            --secondary-color: #D2691E; /* 巧克力色，用于强调 */
+            --bg-color: #F9F7F2; /* 米白色，宣纸质感 */
+            --text-main: #2C2C2C;
+            --text-light: #666666;
+            --border-color: #E0Dcd0;
+            --card-shadow: 0 4px 12px rgba(139, 69, 19, 0.08);
+            --spacing-unit: 1rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", "Songti SC", serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部导航 */
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            margin-left: 10px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: normal;
+            border-left: 1px solid var(--border-color);
+            padding-left: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 1rem;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(rgba(139, 69, 19, 0.85), rgba(139, 69, 19, 0.7)), url('https://picsum.photos/seed/history/1920/600') no-repeat center center/cover;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: "Songti SC", serif;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 2px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: #fff;
+        }
+
+        /* 介绍区域 */
+        .intro-section {
+            padding: 40px 0;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
+
+        .intro-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .intro-section p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        /* 统计数据 */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: var(--card-shadow);
+            border-top: 3px solid var(--primary-color);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* 内容网格 */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.15);
+        }
+
+        .card-img {
+            height: 200px;
+            background-color: #eee;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-tag {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .card-excerpt {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-link {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .card-link::after {
+            content: '→';
+            margin-left: 5px;
+            transition: margin-left 0.2s;
+        }
+
+        .card-link:hover::after {
+            margin-left: 10px;
+        }
+
+        /* 列表样式 */
+        .list-section {
+            background-color: #fff;
+            padding: 60px 0;
+            margin-bottom: 60px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -17px;
+            width: 60px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .filter-list {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+        }
+
+        .filter-list li a {
+            padding: 6px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .filter-list li a.active, .filter-list li a:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th, .data-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            color: var(--primary-color);
+            font-weight: bold;
+            background-color: #fafafa;
+        }
+
+        .data-table tr:hover {
+            background-color: #fffcf9;
+        }
+
+        .data-table a {
+            color: var(--text-main);
+        }
+
+        .data-table a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* 专题图集 */
+        .gallery-section {
+            padding: 60px 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            height: 400px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: #fff;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .gallery-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 60px 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #fff;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--text-light);
+            display: none;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 15px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2C2C2C;
+            color: #aaa;
+            padding: 60px 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item.large {
+                grid-column: span 1;
+            }
+
+            .data-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">烈女 <span>历史人文资料库</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#biographies">人物传记</a></li>
+                    <li><a href="#places">牌坊遗迹</a></li>
+                    <li><a href="#literature">文献研究</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>烈女传</h1>
+                <p>探索中国古代女性气节与历史记忆。收录历代贞节烈女事迹、牌坊建筑艺术及相关历史文献，还原真实的历史语境。</p>
+                <a href="#biographies" class="btn">浏览人物事迹</a>
+            </div>
+        </section>
+
+        <!-- Intro Section -->
+        <section class="container intro-section">
+            <h2>什么是“烈女”？</h2>
+            <p>在中国古代社会，“烈女”一词通常指那些为了保持贞洁、殉情或殉节而牺牲生命的女性。这一概念源于儒家伦理，强调“饿死事小，失节事大”。尽管现代视角对“烈女”文化有不同解读，但作为历史现象，它深刻反映了中国古代社会的礼教规范、家族观念以及女性在特定历史环境下的生存状态。</p>
+            <p>本站致力于客观整理相关史料，分析其背后的社会结构与文化动因，而非单纯歌颂或批判。</p>
+        </section>
+
+        <!-- Statistics -->
+        <section class="container">
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">收录传记</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">牌坊遗址</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10万+</span>
+                    <span class="stat-label">字文献索引</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Grid -->
+        <section id="biographies" class="container">
+            <h2 style="text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--text-main);">历史人物精选</h2>
+            <div class="content-grid">
+                <!-- Card 1 -->
+                <article class="card">
+                    <div class="card-img">
+                        <img src="https://picsum.photos/seed/woman1/400/300" alt="王贞女画像">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-tag">明代</span>
+                        <h3 class="card-title">王贞女：誓不二适的传奇</h3>
+                        <p class="card-excerpt">记载了王贞女在丈夫病逝后，坚持守节，甚至在面临家族压力时依然不改其志的历史事迹。</p>
+                        <a href="#" class="card-link">阅读全文</a>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="card">
+                    <div class="card-img">
+                        <img src="https://picsum.photos/seed/woman2/400/300" alt="烈女牌坊">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-tag">清代</span>
+                        <h3 class="card-title">陈烈女：绝食殉夫</h3>
+                        <p class="card-excerpt">陈烈女在丈夫遭遇不幸后，以绝食抗争的方式维护家族荣誉，其事迹被地方志详细记载。</p>
+                        <a href="#" class="card-link">阅读全文</a>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="card">
+                    <div class="card-img">
+                        <img src="https://picsum.photos/seed/woman3/400/300" alt="烈女祠">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-tag">地方志</span>
+                        <h3 class="card-title">赵氏：守节抚孤</h3>
+                        <p class="card-excerpt">赵氏在丈夫死后，独自抚养幼子成人，并教育有方，被乡里称颂，体现了烈女坚韧的一面。</p>
+                        <a href="#" class="card-link">阅读全文</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- List Section -->
+        <section class="list-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">相关文献与资料</h2>
+                    <ul class="filter-list">
+                        <li><a href="#" class="active">全部</a></li>
+                        <li><a href="#">地方志</a></li>
+                        <li><a href="#">笔记小说</a></li>
+                        <li><a href="#">碑文拓片</a></li>
+                    </ul>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th width="10%">年代</th>
+                            <th width="60%">文献名称</th>
+                            <th width="15%">作者/出处</th>
+                            <th width="15%">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>清·嘉庆</td>
+                            <td><a href="#">《大清一统志》卷三百三十五</a></td>
+                            <td>地理志</td>
+                            <td><a href="#">查看</a></td>
+                        </tr>
+                        <tr>
+                            <td>清·乾隆</td>
+                            <td><a href="#">《江南通志》烈女传</a></td>
+                            <td>苏松常镇四府</td>
+                            <td><a href="#">查看</a></td>
+                        </tr>
+                        <tr>
+                            <td>清·光绪</td>
+                            <td><a href="#">《清稗类钞》节烈类</a></td>
+                            <td>徐珂</td>
+                            <td><a href="#">查看</a></td>
+                        </tr>
+                        <tr>
+                            <td>民国</td>
+                            <td><a href="#">《烈女传补正》</a></td>
+                            <td>陈鸿璧</td>
+                            <td><a href="#">查看</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="places" class="container gallery-section">
+            <h2 style="text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--text-main);">遗迹与牌坊</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item large">
+                    <img src="https://picsum.photos/seed/arch1/800/400" alt="贞节牌坊">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">徽州贞节牌坊群</div>
+                        <div class="gallery-desc">明清时期徽州地区为表彰烈女而建的标志性建筑群。</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/arch2/400/300" alt="牌坊细节">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">牌坊雕刻艺术</div>
+                        <div class="gallery-desc">精美的石雕工艺，记录了当时的审美与工艺水平。</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://picsum.photos/seed/arch3/400/300" alt="祠堂">
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">烈女祠</div>
+                        <div class="gallery-desc">后人祭祀烈女的场所，体现了家族的纪念传统。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="container faq-section">
+            <h2 style="text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--text-main);">常见问题</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">什么是“烈女传”？</div>
+                <div class="faq-answer">
+                    “烈女传”是中国古代记载女性节烈事迹的史书体裁，最早由西汉刘向编撰。后世各朝代多有续补，成为研究古代女性生活与礼教的重要史料。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">现代如何看待“烈女”文化？</div>
+                <div class="faq-answer">
+                    现代视角倾向于从历史社会学角度分析“烈女”现象，既看到其对个体命运的压抑，也关注其在特定历史条件下对家族延续和道德秩序的维护。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">如何辨别史料的真实性？</div>
+                <div class="faq-answer">
+                    在查阅地方志或笔记小说时，需注意作者的时代背景和立场，区分官方表彰与民间传说，避免将文学创作误认为历史事实。
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>关于本站</h3>
+                    <p>致力于挖掘与整理中国历代“烈女”相关的历史文献、人物传记与建筑遗迹，为学术研究与文化传承提供资料支持。</p>
+                </div>
+                <div class="footer-col">
+                    <h3>内容分类</h3>
+                    <ul>
+                        <li><a href="#">人物传记</a></li>
+                        <li><a href="#">牌坊遗迹</a></li>
+                        <li><a href="#">文献索引</a></li>
+                        <li><a href="#">文化研究</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>相关链接</h3>
+                    <ul>
+                        <li><a href="#">二十四史</a></li>
+                        <li><a href="#">地方志数据库</a></li>
+                        <li><a href="#">民俗学研究所</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 烈女历史人文资料库. 保留所有权利. 本站内容仅供学术参考。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的FAQ折叠交互
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentNode;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
